@@ -55,6 +55,14 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
+# Cors configuration
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'https://unrivaled-malabi-c53604.netlify.app/',
+]
+
 ROOT_URLCONF = 'pqrsfapi.urls'
 
 TEMPLATES = [

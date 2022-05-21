@@ -64,7 +64,7 @@ class UserPqrsf(models.Model):
     token = models.CharField(max_length=1280, verbose_name="Token", null=True, blank=True)
     ticket = models.CharField(max_length=16, verbose_name="Ticket")
 
-    files = models.ManyToManyField(FileUser, verbose_name="Archivos del usuario", null=True, blank=True)
+    files = models.ManyToManyField(FileUser, verbose_name="Archivos del usuario")
 
     class Meta:
         verbose_name="Usuario"
