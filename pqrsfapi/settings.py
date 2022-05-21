@@ -1,8 +1,8 @@
 from decouple import config
 from pathlib import Path
 from rest_framework.authentication import SessionAuthentication
-#import django_heroku
-import dj_database_url
+import django_heroku
+# import dj_database_url
 import os
 
 # CSRF is skipped
@@ -152,4 +152,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # configuration when is set on Heroku
-#django_heroku.settings(locals())
+django_heroku.settings(locals())
