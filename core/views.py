@@ -5,10 +5,11 @@ from core.serializers import AgencySerializer, CitySerializer, MatterSerializer,
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 
+
 class CityView(
     generics.GenericAPIView,
     mixins.ListModelMixin,
-    ):
+):
 
     queryset = City.objects.all()
     serializer_class = CitySerializer
@@ -16,11 +17,12 @@ class CityView(
 
     def get(self, request):
         return self.list(request)
-    
+
     def post(self, request):
-        
+
         for i in request.data:
-            City.objects.create(municipioId=i.get('municipioId'), municipioDepartamento=i.get('municipioDepartamento'))
+            City.objects.create(municipioId=i.get(
+                'municipioId'), municipioDepartamento=i.get('municipioDepartamento'))
 
         return Response(status=status.HTTP_201_CREATED)
 
@@ -28,7 +30,7 @@ class CityView(
 class AgencyView(
     generics.GenericAPIView,
     mixins.ListModelMixin,
-    ):
+):
 
     queryset = Agency.objects.all()
     serializer_class = AgencySerializer
@@ -36,18 +38,19 @@ class AgencyView(
 
     def get(self, request):
         return self.list(request)
-    
+
     def post(self, request):
-        
+
         for i in request.data:
             Agency.objects.create(name=i.get('name'))
 
         return Response(status=status.HTTP_201_CREATED)
 
+
 class MatterView(
     generics.GenericAPIView,
     mixins.ListModelMixin,
-    ):
+):
 
     queryset = Matter.objects.all()
     serializer_class = MatterSerializer
@@ -55,27 +58,28 @@ class MatterView(
 
     def get(self, request):
         return self.list(request)
-    
+
     def post(self, request):
-        
+
         for i in request.data:
-            Matter.objects.create(matter_type=i.get('matter_type'), name=i.get('name'))
+            Matter.objects.create(matter_type=i.get(
+                'matter_type'), name=i.get('name'))
 
         return Response(status=status.HTTP_201_CREATED)
+
 
 class UserView(
     generics.GenericAPIView,
     mixins.ListModelMixin,
-    ):
+):
 
     queryset = UserPqrsf.objects.all()
     serializer_class = UserPqrsfSerializer
     permission_classes = [AllowAny]
 
-
     def get(self, request):
         return self.list(request)
-    
+
     def post(self, request):
 
         data = request.data
@@ -88,7 +92,7 @@ class UserView(
         user = object()
 
         if user_type == 1:
-            
+
             document_type = data.get('document_type')
             document_number = data.get('document_number')
             fullname = data.get('fullname')
@@ -108,8 +112,6 @@ class UserView(
             city = City.objects.get(id=id_city)
             agency = Agency.objects.get(id=id_agency)
             matter = Matter.objects.get(id=id_matter)
-
-
 
             user = UserPqrsf.objects.create(
                 document_type=document_type,
@@ -140,11 +142,12 @@ class UserView(
                 description=description,
             )
 
-        if len(files)>0:
+        if len(files) > 0:
             for i in files:
-                file = FileUser.objects.create(name=i.name, filetype=i.filetype, path=i.path)
+                file = FileUser.objects.create(
+                    name=i.name, filetype=i.filetype, path=i.path)
                 user.files.add(file)
-            
+
         user.save()
 
         return Response(status=status.HTTP_201_CREATED)

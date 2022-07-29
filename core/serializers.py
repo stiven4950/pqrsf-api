@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import City, Agency, FileUser, Matter, UserPqrsf
 
+
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
@@ -13,10 +14,12 @@ class AgencySerializer(serializers.ModelSerializer):
         model = Agency
         fields = '__all__'
 
+
 class MatterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Matter
         fields = '__all__'
+
 
 class FileUserSerializer(serializers.ModelSerializer):
     class Meta:
